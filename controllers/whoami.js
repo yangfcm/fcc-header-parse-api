@@ -1,9 +1,11 @@
+const requestIp = require("request-ip");
+
 const whoami = (req, res) => {
-  const ip = req.ip || req.connection.remoteAddress;
+  const ipaddress = requestIp.getClientIp(req);
   const language = req.get("accept-language");
   const software = req.get("user-agent");
   res.json({
-    ip,
+    ipaddress,
     language,
     software,
   });
